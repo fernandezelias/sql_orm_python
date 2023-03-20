@@ -135,7 +135,7 @@ def search_by_tutor(tutor):
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    query = session.query(Estudiante).join(Estudiante.tutor).filter(Tutor.name == 'Ana')
+    query = session.query(Estudiante).join(Estudiante.tutor).filter(Tutor.name == tutor)
     for estudiante in query:
         print(estudiante)
 
@@ -155,7 +155,7 @@ def modify(id, name):
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    query_tutor = session.query(Tutor).filter(Tutor.name == 'Mario')
+    query_tutor = session.query(Tutor).filter(Tutor.name == name)
     nuevo_tutor = query_tutor.first()
 
     query_student = session.query(Estudiante).filter(Estudiante.id == id)
@@ -193,11 +193,11 @@ if __name__ == '__main__':
     fill()
     fetch()
 
-    tutor = 'nombre_tutor'
+    tutor = 'Ana'
     # search_by_tutor(tutor)
     search_by_tutor(tutor)
 
-    nuevo_tutor = 'nombre_tutor'
+    nuevo_tutor = 'Mario'
     id = 2
     # modify(id, nuevo_tutor)
     modify(id, nuevo_tutor)
